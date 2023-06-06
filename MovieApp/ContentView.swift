@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var viewModel = MovieDBViewModel()
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -17,6 +20,20 @@ struct ContentView: View {
         }
         .padding()
     }
+}
+
+class MovieDBViewModel: ObservableObject {
+    
+    @Published var homeScreen: [TrendingItem]
+}
+
+struct TrendingItem:Identifiable, Decodable {
+    
+    let adult: Bool
+    let id: Int
+    let poster_path: String
+    let title: String
+    let vote_average: Float
 }
 
 struct ContentView_Previews: PreviewProvider {
